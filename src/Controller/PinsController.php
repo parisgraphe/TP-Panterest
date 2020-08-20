@@ -26,7 +26,6 @@ class PinsController extends AbstractController
 	public function index(PinRepository $pinRepository): Response
 	{
 		$pins = $pinRepository->findBy([], ['createdAt' => 'DESC']);
-
 		return $this->render('pins/index.html.twig', compact('pins'));
 	}
 
@@ -85,10 +84,12 @@ class PinsController extends AbstractController
 	/**
 	 * @Route("/pins/{id<\d+>}/delete", name="app_pins_delete", methods="DELETE")
 	 */
-	public function delete(Pin $pin): Response
+	public function delete(Request $request, Pin $pin): Response
 	{
-		$this->em->remove($pin);
-		$this->em->flush();
+		if ($this->isCsrfTokenValid('pins_deletion_' . $pin->getId(), $request->request->get('tokenCSRF'))) {
+			$this->em->remove($pin);
+			$this->em->flush();
+		}
 		return $this->redirectToRoute('app_home');
 	}
 }
