@@ -82,7 +82,7 @@ class PinsController extends AbstractController
 	}
 
 	/**
-	 * @Route("/pins/{id<\d+>}/delete", name="app_pins_delete", methods="DELETE")
+	 * @Route("/pins/{id<\d+>}", name="app_pins_delete", methods="DELETE")
 	 */
 	public function delete(Request $request, Pin $pin): Response
 	{
