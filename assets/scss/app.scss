@@ -19,8 +19,15 @@ html, body {
 		@extend .shadow;
 		@extend .img-thumbnail;
 	}
-	
+
 	.form-check {
 		@extend .mt-3;
+	}
+}
+
+.pin img {
+	transition: transform .3s ease-out;
+	&:hover {
+		transform: scale(1.08);
 	}
 }
