@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Pin
 {
 	use Timestampable;
-	
+
 	/**
 	 * @ORM\Id()
 	 * @ORM\GeneratedValue()
@@ -36,6 +36,11 @@ class Pin
 	 * @Assert\Length(min=10)
 	 */
 	private $description;
+
+	/**
+	 * @ORM\Column(type="string", length=255, nullable=true)
+	 */
+	private $imageName;
 
 	public function getId(): ?int
 	{
@@ -62,6 +67,18 @@ class Pin
 	public function setDescription(?string $description): self
 	{
 		$this->description = $description;
+
+		return $this;
+	}
+
+	public function getImageName(): ?string
+	{
+		return $this->imageName;
+	}
+
+	public function setImageName(?string $imageName): self
+	{
+		$this->imageName = $imageName;
 
 		return $this;
 	}
