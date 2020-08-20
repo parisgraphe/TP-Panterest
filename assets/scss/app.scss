@@ -11,3 +11,16 @@ html, body {
 	border-radius: 0;
 	text-align: center;
 }
+
+.vich-image {
+	img {
+		@extend .mb-2;
+		@extend .rounded;
+		@extend .shadow;
+		@extend .img-thumbnail;
+	}
+	
+	.form-check {
+		@extend .mt-3;
+	}
+}
