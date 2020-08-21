@@ -14,10 +14,7 @@ html, body {
 
 .vich-image {
 	img {
-		@extend .mb-2;
-		@extend .rounded;
-		@extend .shadow;
-		@extend .img-thumbnail;
+		@extend .mb-2, .rounded, .shadow, .img-thumbnail;
 	}
 
 	.form-check {
