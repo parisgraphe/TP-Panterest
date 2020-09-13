@@ -41,6 +41,7 @@ class PinsController extends AbstractController
 		$form->handleRequest($request);
 
 		if ($form->isSubmitted() && $form->isValid()) {
+			$pin->setUser($this->getUser());
 			$this->em->persist($pin);
 			$this->em->flush();
 
