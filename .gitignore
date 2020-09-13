@@ -26,6 +26,7 @@ yarn-error.log
 *.code-workspace
 /public/uploads/
 ###< custom ###
+
 ###> liip/imagine-bundle ###
 /public/media/cache/
 ###< liip/imagine-bundle ###
