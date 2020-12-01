@@ -32,9 +32,9 @@ class RegistrationController extends AbstractController
 	{
 		if ($this->getUser()) {
 			$this->addFlash('danger', 'Already logged in!');
-		    return $this->redirectToRoute('app_home');
+			return $this->redirectToRoute('app_home');
 		}
-		
+
 		$user = new User();
 		$form = $this->createForm(RegistrationFormType::class, $user);
 		$form->handleRequest($request);
@@ -58,9 +58,9 @@ class RegistrationController extends AbstractController
 				$user,
 				(new TemplatedEmail())
 					->from(new Address(
-						$this->getParameter('app.mail_from_adress'), 
-						$this->getParameter('app.mail_from_name'))
-					)
+						$this->getParameter('app.mail_from_adress'),
+						$this->getParameter('app.mail_from_name')
+					))
 					->to($user->getEmail())
 					->subject('Please Confirm your Email')
 					->htmlTemplate('emails/registration/confirmation.html.twig')

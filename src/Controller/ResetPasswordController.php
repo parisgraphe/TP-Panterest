@@ -3,20 +3,20 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use Symfony\Component\Mime\Address;
 use App\Form\ChangePasswordFormType;
 use App\Form\ResetPasswordRequestFormType;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mime\Address;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use SymfonyCasts\Bundle\ResetPassword\Controller\ResetPasswordControllerTrait;
 use SymfonyCasts\Bundle\ResetPassword\Exception\ResetPasswordExceptionInterface;
-use SymfonyCasts\Bundle\ResetPassword\ResetPasswordHelperInterface;
 
 /**
  * @Route("/reset-password")
@@ -161,9 +161,9 @@ class ResetPasswordController extends AbstractController
 
 		$email = (new TemplatedEmail())
 			->from(new Address(
-				$this->getParameter('app.mail_from_adress'), 
-				$this->getParameter('app.mail_from_name'))
-			)
+				$this->getParameter('app.mail_from_adress'),
+				$this->getParameter('app.mail_from_name')
+			))
 			->to($user->getEmail())
 			->subject('Your password reset request')
 			->htmlTemplate('reset_password/email.html.twig')
