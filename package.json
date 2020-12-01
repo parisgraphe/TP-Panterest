@@ -2,13 +2,13 @@
     "devDependencies": {
         "@symfony/webpack-encore": "^0.31.0",
         "bootstrap": "^4.5.3",
-        "core-js": "^3.7.0",
+        "core-js": "^3.8.0",
         "jquery": "^3.5.1",
         "node-sass": "^4.14.1",
         "poppers.js": "^1.16.1",
         "regenerator-runtime": "^0.13.2",
         "sass-loader": "^8.0.2",
-        "webpack-notifier": "^1.10.1"
+        "webpack-notifier": "^1.11.0"
     },
     "license": "UNLICENSED",
     "private": true,
