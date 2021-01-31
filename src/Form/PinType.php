@@ -24,7 +24,7 @@ class PinType extends AbstractType
 				'download_uri' => false,
 				// 'image_uri' => true,
 				// 'asset_helper' => true,
-				'imagine_pattern' => 'squared_thumbnail_small'
+				'imagine_pattern' => 'thumbSmall'
 			])
 			->add('title', TextType::class)
 			->add('description', TextareaType::class);

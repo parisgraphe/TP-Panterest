@@ -34,6 +34,15 @@ class PinsController extends AbstractController
 	 */
 	public function create(Request $request): Response
 	{
+		if (!$this->getUser()) {
+			return $this->redirectToRoute('app_login');
+		}
+		
+		if (!$this->getUser()->isVerified()) {
+			$this->addFlash('error', 'You need to have a verified account!');
+			return $this->redirectToRoute('app_home');
+		}
+
 		$pin = new Pin;
 
 		$form = $this->createForm(PinType::class, $pin);
