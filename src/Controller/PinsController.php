@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PinsController extends AbstractController
@@ -31,18 +32,10 @@ class PinsController extends AbstractController
 
 	/**
 	 * @Route("/create", name="app_pins_create", methods="GET|POST")
+	 * @Security("is_granted('ROLE_USER') && user.isVerified()")
 	 */
 	public function create(Request $request): Response
 	{
-		if (!$this->getUser()) {
-			return $this->redirectToRoute('app_login');
-		}
-		
-		if (!$this->getUser()->isVerified()) {
-			$this->addFlash('error', 'You need to have a verified account!');
-			return $this->redirectToRoute('app_home');
-		}
-
 		$pin = new Pin;
 
 		$form = $this->createForm(PinType::class, $pin);
@@ -74,6 +67,7 @@ class PinsController extends AbstractController
 
 	/**
 	 * @Route("/pins/{id<\d+>}/edit", name="app_pins_edit", methods="GET|PUT")
+	 * @Security("is_granted('ROLE_USER') && user.isVerified() && pin.getUser() == user")
 	 */
 	public function edit(Pin $pin, Request $request): Response
 	{
@@ -99,6 +93,7 @@ class PinsController extends AbstractController
 
 	/**
 	 * @Route("/pins/{id<\d+>}", name="app_pins_delete", methods="DELETE")
+	 * @Security("is_granted('ROLE_USER') && user.isVerified() && pin.getUser() == user")
 	 */
 	public function delete(Request $request, Pin $pin): Response
 	{
